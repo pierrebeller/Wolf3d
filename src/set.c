@@ -13,7 +13,6 @@ void		new_player(t_wolf *e)
 void		new_mlx(t_wolf *e)
 {
 	e->mlx.mlx = mlx_init;
-	e->mlx.win = mlx_new_window(e->mlx.mlx, WIDTH, HEIGTH, "Wolf3d");
 	e->mlx.img = mlx_new_image(e->mlx.mlx, WIDTH, HEIGTH);
 	e->mlx.data = mlx_get_data_addr(e->mlx.img, &(window->color),\
 		&(window->size), &(window->endian));
