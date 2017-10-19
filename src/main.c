@@ -16,5 +16,7 @@ int			main(int ac, char **av)
 	e = new_env()
 	parsing_check(e, ac, av);
 	e->mlx.win = mlx_new_window(e->mlx.mlx, WIDTH, HEIGTH, "Wolf3d");
+	mlx_hook(e->win, 2, (1L << 0), key_press, e);
+	mlx_hook(e->win, 17, 0, ft_quit, e);
 	return (0);
 }

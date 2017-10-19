@@ -40,6 +40,7 @@ typedef	struct	s_wolf
 	t_player	player;
 	t_ray		ray;
 	char		*path;
+	int			**map;
 	int			color_1;
 	int			color_2;
 	int			color_3;
