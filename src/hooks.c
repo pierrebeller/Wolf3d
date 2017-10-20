@@ -12,16 +12,6 @@
 
 #include "../includes/wolf.h"
 
-int			ft_quit(t_wolf *e)
-{
-	int		y;
-
-	y = 0;
-	if (e->ptr && e->win)
-		mlx_destroy_window(e->ptr, e->win);
-	exit(0);
-}
-
 int			key_move(int k, t_wolf *e)
 {
 	if (k == 13)
@@ -35,7 +25,7 @@ int			key_move(int k, t_wolf *e)
 	if (k == 49 && e->player.move_jump == 0)
 		e->player.move_jump = 1;
 	if (k == 53)
-		ft_quit(e);
+		ft_exit(e);
 	return (0);
 }
 

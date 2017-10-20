@@ -39,7 +39,7 @@ int				color(t_wolf *e)
 	return (e->color_4);
 }
 
-unsigned int	smog(unsigned int c, double d)
+unsigned int	fog(unsigned int c, double d)
 {
 	unsigned char	r;
 	unsigned char	g;
@@ -66,7 +66,7 @@ void			ft_draw(t_wolf *e, int x, int start, int finish)
 	int		c;
 
 	c = color(e);
-	c = smog(c, e->ray.dist);
+	c = fog(c, e->ray.dist);
 	i = -1;
 	while (++i < start + e->player.z)
 		pixel_put(e, x, i, e->color_sky);
@@ -75,5 +75,5 @@ void			ft_draw(t_wolf *e, int x, int start, int finish)
 		pixel_put(e, x, i, c);
 	i--;
 	while (++i < e->heigth)
-		pixel_put(e, x, i, smog(e->color_floor, abs(i - e->heigth) * 0.040));
+		pixel_put(e, x, i, fog(e->color_floor, abs(i - e->heigth) * 0.040));
 }

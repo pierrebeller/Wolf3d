@@ -90,6 +90,7 @@ typedef	struct		s_wolf
 	unsigned int	color_floor;
 }					t_wolf;
 
+int					ft_exit(t_wolf *e);
 void				error_usage(t_wolf *e);
 void				error_map(t_wolf *e);
 

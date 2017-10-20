@@ -12,16 +12,21 @@
 
 #include "../includes/wolf.h"
 
+int			ft_quit(t_wolf *e)
+{
+	if (e->ptr && e->win)
+		mlx_destroy_window(e->ptr, e->win);
+	exit(1);
+}
+
 void		error_usage(t_wolf *e)
 {
 	ft_putstr_fd("Usage <filename> <map>\n", 2);
 	ft_quit(e);
-	exit(1);
 }
 
 void		error_map(t_wolf *e)
 {
 	ft_putstr_fd("Invalid map", 2);
 	ft_quit(e);
-	exit(1);
 }

@@ -18,13 +18,13 @@ void	read_init(int fd, t_wolf *e)
 	char	**splited;
 	int		i;
 
-	i = -1;
+	i = 0;
 	if (get_next_line(fd, &line) < 1)
 		error_map(e);
 	splited = ft_strsplit(line, ' ');
 	free(line);
-	while (splited[++i] != '\0')
-		;
+	while (splited[i] != '\0')
+		i++;
 	if (i != 4)
 		error_map(e);
 	e->map_width = ft_atoi(splited[0]);
@@ -46,12 +46,12 @@ void	read_line(char *line, int y, t_wolf *e, int **map)
 	int		x;
 	char	**splited;
 
-	x = -1;
+	x = 0;
 	if (y >= e->map_heigth)
 		error_map(e);
 	splited = ft_strsplit(line, ' ');
 	map[y] = (int *)ft_x_malloc(sizeof(int *) * e->map_width);
-	while (splited[++x] != '\0')
+	while (splited[x] != '\0')
 	{
 		if (!(splited[x][0] >= '0' && splited[x][0] <= '9' &&\
 			ft_atoi(splited[x]) >= 0 && x < e->map_width))
@@ -61,6 +61,7 @@ void	read_line(char *line, int y, t_wolf *e, int **map)
 			y == e->map_heigth - 1) && map[y][x] == 0)
 			error_map(e);
 		free(splited[x]);
+		x++;
 	}
 	free(splited[x]);
 	free(splited);
@@ -74,13 +75,14 @@ int		read_map(int fd, t_wolf *e)
 	int		y;
 	int		**map;
 
-	y = -1;
+	y = 0;
 	read_init(fd, e);
 	map = (int **)ft_x_malloc(sizeof(int **) * e->map_heigth);
 	while (get_next_line(fd, &line) == 1)
 	{
-		read_line(line, ++y, e, map);
+		read_line(line, y, e, map);
 		free(line);
+		y++;
 	}
 	free(line);
 	if (map[(int)e->player.pos.x][(int)e->player.pos.y] != 0)

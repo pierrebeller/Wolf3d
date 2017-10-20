@@ -12,6 +12,13 @@
 
 #include "../includes/wolf.h"
 
+int			ft_exit(t_wolf *e)
+{
+	mlx_destroy_image(e->ptr, e->img);	
+	mlx_destroy_window(e->ptr, e->win);
+	exit(0);
+}
+
 void		parsing_check(t_wolf *e, int ac, char **av)
 {
 	if (ac != 2)
@@ -30,7 +37,7 @@ int			main(int ac, char **av)
 	mlx_do_key_autorepeatoff(e->ptr);
 	mlx_loop_hook(e->ptr, loop_hook, e);
 	mlx_hook(e->win, 2, (1L << 0), key_press, e);
-	mlx_hook(e->win, 17, 0, ft_quit, e);
+	mlx_hook(e->win, 17, 0, ft_exit, e);
 	mlx_key_hook(e->win, key_hook, e);
 	mlx_loop(e->ptr);
 	return (0);
