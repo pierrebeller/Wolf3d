@@ -17,7 +17,7 @@ t_point		*ft_point(int x, int y)
 {
 	t_point *pt;
 
-	pt = (t_point *)malloc(sizeof(t_point));
+	pt = (t_point *)ft_x_malloc(sizeof(t_point));
 	pt->x = x;
 	pt->y = y;
 	return (pt);

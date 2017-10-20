@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnew.c                                        :+:      :+:    :+:   */
+/*   loop.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pbeller <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/24 09:54:50 by pbeller           #+#    #+#             */
-/*   Updated: 2016/11/24 09:54:52 by pbeller          ###   ########.fr       */
+/*   Created: 2017/10/19 12:58:27 by pbeller           #+#    #+#             */
+/*   Updated: 2017/10/19 12:58:29 by pbeller          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "../includes/wolf.h"
 
-char	*ft_strnew(size_t size)
+int		loop_hook(t_wolf *e)
 {
-	char *str;
-
-	str = (char *)ft_x_malloc(sizeof(char) * (size + 1));
-	if (str == NULL)
-		return (NULL);
-	ft_bzero(str, size + 1);
-	return (str);
+	if (e->player.move_forw)
+		move_forw(e);
+	if (e->player.move_back)
+		move_back(e);
+	if (e->player.move_left)
+		move_left(e);
+	if (e->player.move_right)
+		move_right(e);
+	if (e->player.move_jump == 1)
+		move_jump(e);
+	raycasting(e);
+	mlx_put_image_to_window(e->ptr, e->win, e->img, 0, 0);
+	return (0);
 }

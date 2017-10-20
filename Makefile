@@ -8,6 +8,11 @@ SRC 	= 		main.c \
 				error.c \
 				parsing.c \
 				set.c \
+				hooks.c \
+				draw.c \
+				loop.c \
+				raycasting.c \
+				move.c
 
 OBJ = $(addprefix $(OBJDIR),$(SRC:.c=.o))
 

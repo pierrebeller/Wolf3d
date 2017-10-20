@@ -19,7 +19,7 @@ void		*ft_memalloc(size_t size)
 	size_t	i;
 
 	i = 0;
-	mem = malloc(sizeof(char) * size);
+	mem = ft_x_malloc(sizeof(char) * size);
 	if (mem == NULL)
 		return (0);
 	ft_memset(mem, 0, size);

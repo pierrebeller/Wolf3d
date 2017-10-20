@@ -57,7 +57,7 @@ char			**ft_strsplit(char const *s, char c)
 		return (NULL);
 	i = 0;
 	words = nb_lines(s, c);
-	tab = (char **)malloc(sizeof(*tab) * (words + 1));
+	tab = (char **)ft_x_malloc(sizeof(*tab) * (words + 1));
 	if (tab == NULL)
 		return (NULL);
 	while (words)

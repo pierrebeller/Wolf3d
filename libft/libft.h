@@ -113,4 +113,5 @@ t_point				*ft_point(int x, int y);
 t_dpoint			*ft_dpoint(double x, double y);
 t_dcomplex			ft_dcomplex(double r, double i);
 int					ft_abs(int x);
+void				*ft_x_malloc(int size);
 #endif

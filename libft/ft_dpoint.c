@@ -17,7 +17,7 @@ t_dpoint	*ft_dpoint(double x, double y)
 {
 	t_dpoint	*pt;
 
-	pt = (t_dpoint *)malloc(sizeof(t_dpoint));
+	pt = (t_dpoint *)ft_x_malloc(sizeof(t_dpoint));
 	pt->x = x;
 	pt->y = y;
 	return (pt);

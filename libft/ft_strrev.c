@@ -21,7 +21,7 @@ char		*ft_strrev(char *str)
 
 	i = 0;
 	j = 0;
-	dest = (char *)malloc(sizeof(char) * ft_strlen(str));
+	dest = (char *)ft_x_malloc(sizeof(char) * ft_strlen(str));
 	if (dest == NULL)
 		return (NULL);
 	while (str[i])
