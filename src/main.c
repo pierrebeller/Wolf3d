@@ -19,20 +19,12 @@ int			ft_exit(t_wolf *e)
 	exit(0);
 }
 
-void		parsing_check(t_wolf *e, int ac, char **av)
-{
-	if (ac != 2)
-		error_usage(e);
-	if (parsing(e, av[1]) == 0)
-		error_map(e);
-}
-
-int			main(int ac, char **av)
+int			main(void)
 {
 	t_wolf	*e;
 
 	e = new_env();
-	parsing_check(e, ac, av);
+	parsing(e);
 	e->win = mlx_new_window(e->ptr, WIN_W, WIN_H, "Wolf3d");
 	mlx_do_key_autorepeatoff(e->ptr);
 	mlx_loop_hook(e->ptr, loop_hook, e);

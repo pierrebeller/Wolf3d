@@ -22,8 +22,6 @@ int			key_move(int k, t_wolf *e)
 		e->player.move_left = !e->player.move_left;
 	if (k == 2)
 		e->player.move_right = !e->player.move_right;
-	if (k == 49 && e->player.move_jump == 0)
-		e->player.move_jump = 1;
 	if (k == 53)
 		ft_exit(e);
 	return (0);

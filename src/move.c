@@ -64,17 +64,4 @@ void	move_left(t_wolf *e)
 	cos(e->player.speed_turn);
 }
 
-void	move_jump(t_wolf *e)
-{
-	if (e->player.z >= 100)
-		e->player.is_jump = 1;
-	if (e->player.is_jump == 1)
-		e->player.z -= 10;
-	if (e->player.is_jump == 0)
-		e->player.z += 10;
-	if (e->player.is_jump == 1 && e->player.z == 0)
-	{
-		e->player.is_jump = 0;
-		e->player.move_jump = 0;
-	}
-}
+

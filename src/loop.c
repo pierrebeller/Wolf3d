@@ -22,8 +22,6 @@ int		loop_hook(t_wolf *e)
 		move_left(e);
 	if (e->player.move_right)
 		move_right(e);
-	if (e->player.move_jump == 1)
-		move_jump(e);
 	raycasting(e);
 	mlx_put_image_to_window(e->ptr, e->win, e->img, 0, 0);
 	return (0);

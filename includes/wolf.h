@@ -40,9 +40,6 @@ typedef struct		s_player
 	t_dxy			pos;
 	t_dxy			dir;
 	t_dxy			plane;
-	int				z;
-	char			is_jump;
-	char			move_jump;
 	char			move_forw;
 	char			move_back;
 	char			move_left;
@@ -76,7 +73,6 @@ typedef	struct		s_wolf
 	int				color;
 	int				size;
 	int				endian;
-	char			*path;
 	int				**map;
 	int				map_width;
 	int				map_heigth;
@@ -94,7 +90,7 @@ int					ft_exit(t_wolf *e);
 void				error_usage(t_wolf *e);
 void				error_map(t_wolf *e);
 
-int					parsing(t_wolf *e, char *path);
+void				parsing(t_wolf *e);
 
 t_wolf				*new_env(void);
 

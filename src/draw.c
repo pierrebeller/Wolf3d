@@ -39,41 +39,19 @@ int				color(t_wolf *e)
 	return (e->color_4);
 }
 
-unsigned int	fog(unsigned int c, double d)
-{
-	unsigned char	r;
-	unsigned char	g;
-	unsigned char	b;
-
-	r = c;
-	g = c >> 8;
-	b = c >> 16;
-	d = 7 / (100 / d);
-	if (d > 0.9)
-		d = 0.9;
-	if (r > 0)
-		r = r - (r * d);
-	if (g > 0)
-		g = g - (g * d);
-	if (b > 0)
-		b = b - (b * d);
-	return ((r << 16) + (g << 8) + b);
-}
-
 void			ft_draw(t_wolf *e, int x, int start, int finish)
 {
 	int		i;
 	int		c;
 
 	c = color(e);
-	c = fog(c, e->ray.dist);
 	i = -1;
-	while (++i < start + e->player.z)
+	while (++i < start)
 		pixel_put(e, x, i, e->color_sky);
 	i--;
-	while (++i <= finish + e->player.z && i < e->heigth)
+	while (++i <= finish && i < e->heigth)
 		pixel_put(e, x, i, c);
 	i--;
 	while (++i < e->heigth)
-		pixel_put(e, x, i, fog(e->color_floor, abs(i - e->heigth) * 0.040));
+		pixel_put(e, x, i, e->color_floor);
 }

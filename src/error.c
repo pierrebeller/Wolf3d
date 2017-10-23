@@ -14,8 +14,7 @@
 
 int			ft_quit(t_wolf *e)
 {
-	if (e->ptr && e->win)
-		mlx_destroy_window(e->ptr, e->win);
+	(void)e;
 	exit(1);
 }
 
