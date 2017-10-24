@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
+#include <stdio.h>
 
 int		loop_hook(t_wolf *e)
 {

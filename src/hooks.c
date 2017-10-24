@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/wolf.h"
+#include <stdio.h>
 
 int			key_move(int k, t_wolf *e)
 {

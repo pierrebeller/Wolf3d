@@ -12,25 +12,31 @@
 
 #include "../includes/wolf.h"
 
-void	build_wall(t_wolf *e)
+void	build_map(t_wolf *e)
 {
-	int i;
-
-	i = 0;
-	while (i <= 20)
-	{
-		if (i % 3 == 0)
-		{
-			e->map[i][i] = 1;
-			e->map[i + 1][i] = 1;
-			e->map[i][i + 1] = 1;
-		}
-		e->map[i][0] = 1;
-		e->map[i][20] = 1;
-		e->map[0][i] = 1;
-		e->map[20][i] = 1;
-		i++;
-	}
+	int	x;
+	int y;
+	
+	x = -1;
+	while (++x < 15 && (y = -1))
+		while(++y < 15)
+			e->map[x][y] = (int)
+				"\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1"
+				"\1\0\0\0\0\0\0\0\0\1\0\0\0\0\1"
+				"\1\0\1\1\1\1\1\1\0\1\0\0\0\0\1"
+				"\1\0\0\0\0\0\0\1\0\1\0\0\0\0\1"
+				"\1\0\1\0\0\0\0\1\0\1\0\0\0\0\1"
+				"\1\0\1\0\0\0\0\1\0\0\0\0\0\0\1"
+				"\1\0\1\0\0\0\0\1\0\1\0\0\0\0\1"
+				"\1\0\1\1\1\1\1\1\0\1\0\0\0\0\1"
+				"\1\0\0\0\0\0\0\0\0\1\0\0\0\0\1"
+				"\1\1\1\1\1\0\1\1\1\1\0\0\0\0\1"
+				"\1\0\0\0\0\0\0\0\0\1\0\0\0\0\1"
+				"\1\0\0\0\0\0\0\0\0\1\0\0\0\0\1"
+				"\1\0\0\0\0\0\0\0\0\0\0\0\0\0\1"
+				"\1\0\0\0\0\0\0\0\0\1\0\0\0\0\1"
+				"\1\1\1\1\1\1\1\1\1\1\1\1\1\1\1"
+				[x + y * 15];
 }
 
 void	build_floor(t_wolf *e)
@@ -39,12 +45,12 @@ void	build_floor(t_wolf *e)
 	int y;
 
 	y = 0;
-	e->map = (int **)ft_x_malloc(sizeof(int *) * 21);
-	while (y <= 20)
+	e->map = (int **)ft_x_malloc(sizeof(int *) * 16);
+	while (y <= 15)
 	{
 		x = 0;
-		e->map[y] = (int *)ft_x_malloc(sizeof(int) * 21);
-		while (x <= 20)
+		e->map[y] = (int *)ft_x_malloc(sizeof(int) * 16);
+		while (x < 15)
 		{
 			e->map[y][x] = 0;
 			x++;
@@ -56,7 +62,7 @@ void	build_floor(t_wolf *e)
 void	parsing(t_wolf *e)
 {
 	build_floor(e);
-	build_wall(e);
-	e->map_width = 21;
-	e->map_heigth = 21;
+	build_map(e);
+	e->map_width = 15;
+	e->map_heigth = 15;
 }

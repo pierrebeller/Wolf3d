@@ -28,15 +28,15 @@ int				color(t_wolf *e)
 	{
 		if ((e->ray.step.x == -1 && e->ray.step.y == -1) ||\
 			(e->ray.step.x == 1 && e->ray.step.y == -1))
-			return (e->color_1);
+			return (e->red);
 		if ((e->ray.step.x == -1 && e->ray.step.y == 1) ||\
 			(e->ray.step.x == 1 && e->ray.step.y == 1))
-			return (e->color_2);
+			return (e->green);
 	}
 	if ((e->ray.step.x == -1 && e->ray.step.y == -1) ||\
 		(e->ray.step.x == -1 && e->ray.step.y == 1))
-		return (e->color_3);
-	return (e->color_4);
+		return (e->blue);
+	return (e->white);
 }
 
 void			ft_draw(t_wolf *e, int x, int start, int finish)

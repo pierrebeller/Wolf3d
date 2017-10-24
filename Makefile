@@ -5,7 +5,6 @@
 NAME = wolf3d
 
 SRC 	= 		main.c \
-				error.c \
 				parsing.c \
 				set.c \
 				hooks.c \

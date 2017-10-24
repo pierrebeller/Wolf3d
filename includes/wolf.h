@@ -78,24 +78,20 @@ typedef	struct		s_wolf
 	int				map_heigth;
 	int				width;
 	int				heigth;
-	unsigned int	color_1;
-	unsigned int	color_2;
-	unsigned int	color_3;
-	unsigned int	color_4;
+	unsigned int	red;
+	unsigned int	green;
+	unsigned int	blue;
+	unsigned int	white;
 	unsigned int	color_sky;
 	unsigned int	color_floor;
 }					t_wolf;
 
 int					ft_exit(t_wolf *e);
-void				error_usage(t_wolf *e);
-void				error_map(t_wolf *e);
-
 void				parsing(t_wolf *e);
 
 t_wolf				*new_env(void);
 
 void				ft_set_hooks(t_wolf *e);
-int					ft_quit(t_wolf *e);
 int					key_press(int k, t_wolf *e);
 int					key_hook(int k, t_wolf *e);
 
@@ -107,7 +103,6 @@ void				move_left(t_wolf *e);
 void				move_right(t_wolf *e);
 void				move_back(t_wolf *e);
 void				move_forw(t_wolf *e);
-void				move_jump(t_wolf *e);
 
 void				ft_draw(t_wolf *e, int x, int start, int finish);
 #endif
