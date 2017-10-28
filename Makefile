@@ -62,10 +62,11 @@ clean:
 	@ echo "$(RED)Objects MLX destroyed $(NORMAL)"
 
 fclean: clean
+	@ echo "$(YELLOW)Mlx.a was not destroyed, because MLX sucks and has no fclean rule...$(NORMAL)"
 	@ rm -rf $(NAME)
 	@ echo "$(RED)Wolf3d destroyed $(NORMAL)"
 	@ make -C $(FT) fclean
-	
+	@ echo "$(RED)Libft.a destroyed $(NORMAL)"
 re: fclean all
 
 .PHONY: clean, fclean, re, all
