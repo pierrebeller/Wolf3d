@@ -1,17 +1,20 @@
 
 NAME = wolf3d
 
-SRCS 	= 		main.c \
-				parsing.c \
-				set.c \
-				hooks.c \
-				draw.c \
-				loop.c \
-				raycasting.c \
-				move.c
+SRC 	= 		src/main.c \
+				src/parsing.c \
+				src/set.c \
+				src/hooks.c \
+				src/draw.c \
+				src/loop.c \
+				src/raycasting.c \
+				src/move.c
 
 GREEN = \033[32m
 RED = \033[31m
+CYAN = \033[36m
+BLUE = \033[34m
+YELLOW = \033[33m
 NORMAL = \033[0m
 
 CC = gcc
@@ -31,20 +34,24 @@ SRCDIR = ./src/
 INCDIR = ./includes/
 OBJDIR = ./obj/
 
-SRC 	= 	$(addprefix $(SRCDIR),$(SRCS))
-OBJ 	= 	$(SRCS:.c=.o)
+OBJ 	= 	$(patsubst src/%.c, obj/%.o,$(SRC))
 
 all: $(NAME)
 
-$(NAME):
+$(NAME): $(OBJ)
+	@ echo "$(BLUE)Compil Libft $(NORMAL)"
 	@ make -C libft
 	@ echo "$(GREEN)Libft compiled $(NORMAL)"
+	@ echo "$(BLUE)Compil MLX $(NORMAL)"
 	@ make -C $(MLX)
 	@ echo "$(GREEN)MLX compiled $(NORMAL)"
-	@ gcc $(CFLAGS) -c $(FT_INC) $(SRC)
 	@ echo "$(GREEN)Objects created $(NORMAL)"
 	@ gcc $(CFLAGS) $(OBJ) $(MLX_LNK) $(FT_INC) $(FT_LIB) -o $(NAME)
 	@ echo "$(GREEN)Wolf3d compiled $(NORMAL)"
+
+obj/%.o: src/%.c
+	@ mkdir -p obj
+	@ $(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@ rm -rf $(OBJ)
