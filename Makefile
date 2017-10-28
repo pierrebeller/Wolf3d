@@ -1,10 +1,7 @@
-.PHONY: clean, fclean, re, all
-
-.SUFFIXES:
 
 NAME = wolf3d
 
-SRC 	= 		main.c \
+SRCS 	= 		main.c \
 				parsing.c \
 				set.c \
 				hooks.c \
@@ -13,50 +10,55 @@ SRC 	= 		main.c \
 				raycasting.c \
 				move.c
 
-OBJ = $(addprefix $(OBJDIR),$(SRC:.c=.o))
+GREEN = \033[32m
+RED = \033[31m
+NORMAL = \033[0m
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror -g
+CFLAGS = -Wall -Wextra -Werror
+
+FT = ./libft/
+FT_LIB = $(addprefix $(FT),libft.a)
+FT_INC = -I ./libft
+FT_LNK = -L ./libft -l ft
 
 MLX = ./minilibx_macos/
 MLX_LIB = $(addprefix $(MLX),mlx.a))
 MLX_INC = -I ./minilibx_macos
 MLX_LNK = -L ./minilibx_macos -l mlx -framework OpenGl -framework AppKit
 
-FT = ./libft/
-FT_LIB = $(addprefix $(FT),libft.a))
-FT_INC = -I ./libft
-FT_LNK = -L ./libft -l ft
-
 SRCDIR = ./src/
 INCDIR = ./includes/
 OBJDIR = ./obj/
 
-all: obj $(FT_LIB) $(MLX_LIB) $(NAME)
+SRC 	= 	$(addprefix $(SRCDIR),$(SRCS))
+OBJ 	= 	$(SRCS:.c=.o)
 
-obj: 
-		mkdir -p $(OBJDIR)
+all: $(NAME)
 
-$(OBJDIR)%.o:$(SRCDIR)%.c
-		$(CC) $(CFLAGS) $(MLX_INC) $(FT_INC) -I $(INCDIR) -o $@ -c $<
+$(NAME):
+	@ make -C libft
+	@ echo "$(GREEN)Libft compiled $(NORMAL)"
+	@ make -C $(MLX)
+	@ echo "$(GREEN)MLX compiled $(NORMAL)"
+	@ gcc $(CFLAGS) -c $(FT_INC) $(SRC)
+	@ echo "$(GREEN)Objects created $(NORMAL)"
+	@ gcc $(CFLAGS) $(OBJ) $(MLX_LNK) $(FT_INC) $(FT_LIB) -o $(NAME)
+	@ echo "$(GREEN)Wolf3d compiled $(NORMAL)"
 
-$(FT_LIB):
-		make -C $(FT)
-
-$(MLX_LIB):
-		make -C $(MLX)
-
-$(NAME) : $(OBJ)
-	$(CC) $(OBJ) $(MLX_LNK) $(FT_LNK) -lm -o $(NAME)
-	
 clean:
-	rm -rf $(OBJDIR)
-	make -C $(FT) clean
-	make -C $(MLX) clean
+	@ rm -rf $(OBJ)
+	@ echo "$(RED)Objects Wolf3d destroyed $(NORMAL)"
+	@ make -C $(FT) clean
+	@ echo "$(RED)Objects Libft destroyed $(NORMAL)"
+	@ make -C $(MLX) clean
+	@ echo "$(RED)Objects MLX destroyed $(NORMAL)"
 
 fclean: clean
-	rm -rf $(NAME)
-	make -C $(FT) fclean
+	@ rm -rf $(NAME)
+	@ echo "$(RED)Wolf3d destroyed $(NORMAL)"
+	@ make -C $(FT) fclean
 	
-
 re: fclean all
+
+.PHONY: clean, fclean, re, all
